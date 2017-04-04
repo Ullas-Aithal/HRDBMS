@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/IITDBGroup/HRDBMS.svg?branch=merged)](https://travis-ci.org/IITDBGroup/HRDBMS)
 
 # Overview
-HRDBMS is a relational database for analytics/complex queries that is designed to handle large amounts of data and run across large clusters.
+HRDBMS is a srelational database for analytics/complex queries that is designed to handle large amounts of data and run across large clusters.
 The nodes in an HRDBMS cluster are divided into 2 types: coordinators nodes and workers nodes.  The majority of the cluster will be made of worker nodes.  These are the nodes that will actually store table data and do the majority of query processing.  The remaining nodes are coordinator nodes.  The coordinator nodes are responsible for accepting incoming requests from JDBC clients (no ODBC supported as of yet) and doing query planning and optimization.  Your cluster must have at least 1 coordinator and 3 workers.  You can have multiple coordinators if you choose.  The main advantage of this is to be able to handle more clients, and (in the future) to provide HA for coordinators.
 
 The [Wiki](https://github.com/IITDBGroup/HRDBMS/wiki) covers how to build, install, configure, and start HRDBMS as well as discusses SQL syntax and how to use the JDBC driver and CLI interface.
