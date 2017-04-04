@@ -28,6 +28,7 @@ import com.exascale.optimizer.MetaData;
 import com.exascale.optimizer.NetworkReceiveOperator;
 import com.exascale.optimizer.NetworkSendOperator;
 import com.exascale.optimizer.Operator;
+import com.exascale.optimizer.Phase1_a;
 import com.exascale.optimizer.Phase1;
 import com.exascale.optimizer.Phase2;
 import com.exascale.optimizer.Phase3;
@@ -157,7 +158,7 @@ public class XAManager extends HRDBMSThread
 		catch (final Exception e)
 		{
 			// TODO return askReplicas(xa);
-			HRDBMSWorker.logger.fatal("ASK REPLICAS", e);
+			//HRDBMSWorker.logger.fatal("ASK REPLICAS", e);
 			System.exit(1);
 			return false;
 		}
@@ -278,7 +279,11 @@ public class XAManager extends HRDBMSThread
 				final Operator op = array.get(0);
 				final Phase1 p1 = new Phase1((RootOperator)op, tx);
 				p1.optimize();
+				
 				// HRDBMSWorker.logger.debug("Phase 1 completed");
+				
+				final Phase1_a p1_a = new Phase1_a((RootOperator)op, tx);
+				p1_a.optimize();
 				new Phase2((RootOperator)op, tx).optimize();
 				// HRDBMSWorker.logger.debug("Phase 2 completed");
 				new Phase3((RootOperator)op, tx).optimize();
